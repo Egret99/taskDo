@@ -2,10 +2,11 @@ import { getDivContainer } from "./container";
 import { getButton, getCheckBox, getForm, getTextInput } from "./formElements";
 
 function getTaskElement(contentText: string, done: boolean) {
-    const deleteButton = getButton('Delete')
+    const deleteButton = getButton('', 'delete.png')
     const checkBox = getCheckBox()
     checkBox.name = 'status'
     checkBox.checked = done
+    checkBox.classList.add('checkBox')
     checkBox.onchange = () => changeStatus(checkBox.parentNode as HTMLDivElement)
 
     let content: HTMLElement
@@ -50,8 +51,10 @@ function changeStatus(div: HTMLDivElement) {
 }
 
 function editTaskContent(content: HTMLDivElement) {
-    content.parentNode.append(getTaskContentInput(content.innerText))
+    const input = getTaskContentInput(content.innerText)
+    content.parentNode.append(input)
     content.remove()
+    input.focus()
 }
 
 function saveTask(div: HTMLDivElement) {

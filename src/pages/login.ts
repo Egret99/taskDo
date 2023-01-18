@@ -9,13 +9,17 @@ function login() {
     const title = getTitle('TaskDo')
     const subTitle = getSubTitle('Manage You Task Checklist Easily')
     const titleDiv = getDivContainer([title, subTitle])
-    document.body.append(titleDiv)
+    titleDiv.id = 'loginTitle'
 
     const nameInput = getTextInput('userName', 'Your Name');
     const submitButton = getButton('Lets Start');
     const form = getForm([nameInput, submitButton]);
+    form.classList.add('container')
     form.onsubmit = formSubmit
-    document.body.append(form)
+    
+    const pageContainer = getDivContainer([titleDiv, form])
+    pageContainer.id = 'loginPage'
+    document.body.append(pageContainer)
 }
 
 function validateName(name: string) {

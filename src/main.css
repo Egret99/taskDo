@@ -1,0 +1,86 @@
+#nav {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px 100px;
+    padding: 0;
+}
+
+#nav #mainGreeting {
+    font-size: 22px;
+    align-items: flex-start;
+}
+
+#nav #mainGreeting div:nth-child(2) {
+    color: #EF6161;
+}
+
+#nav #mainTitle {
+    font-size: 70px;
+    margin: 0;
+}
+
+#nav #logoutButton {
+    font-size: 22px;
+    color: #B47AEA;
+    background-color: transparent;
+    border: none;
+}
+
+#taskContent {
+    align-items: flex-start;
+    margin: 100px 30%;
+    row-gap: 30px;
+    font-size: 22px;
+}
+
+#taskContentAddNewButton {
+    background-color: transparent;
+    color: #B47AEA;
+    border: none;
+    font-size: 22px;
+}
+
+#taskContent button {
+    font-size: 22px;
+    border: None;
+    background-color: transparent;
+    color: #5E5E5E;
+}
+
+#taskContent #taskList {
+    align-items: flex-start;
+    row-gap: 10px;
+}
+
+#taskContent .taskItem {
+    flex-direction: row;
+    gap: 10px;
+}
+
+#taskContent .checkBox {
+    border: #1E9CEA 1px solid;
+}
+
+#taskContent .checkBox:checked {
+    background-color: #1E9CEA;
+    color: #FFF;
+}
+
+#taskContent input[type='text'] {
+    font-size: 22px;
+    color: #5E5E5E;
+    border: none;
+    padding: 0 2px;
+    border-bottom: #53ace4 2px solid;
+    width: 500px;
+}
+
+#taskContent input[type='text']:focus {
+    border: none;
+    border-bottom: #a4d7f6 2px solid;
+}
+
+#taskContent input[type='text']:focus-visible {
+    border: none;
+    border-bottom: #1E9CEA 2px solid;
+}

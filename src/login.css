@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #5E5E5E;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginPage {
+    margin-top: 15%;
+    row-gap: 30px;
+}
+
+#loginTitle h1 {
+    margin: 0;
+    font-size: 88px;
+}
+
+#loginTitle h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#loginPage form {
+    row-gap: 15px;
+}
+
+#loginPage form input {
+    width: 250px;
+    height: 45px;
+    border-radius: 10px;
+    border: #1E9CEA 2px solid;
+    font-size: 24px;
+    text-align: center;
+    color: #5E5E5E;
+}
+
+#loginPage form input::placeholder {
+    color: #C8C8C8;
+}
+
+#loginPage form button {
+    width: 200px;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    background-color: #B47AEA;
+    font-weight: bold;
+    color: #fff;
+    font-size: 24px;
+}

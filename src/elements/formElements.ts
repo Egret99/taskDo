@@ -1,3 +1,4 @@
+
 function getTextInput(name: string, placeHolder?: string) {
     const input = document.createElement('input')
     input.name = name
@@ -16,7 +17,14 @@ function getCheckBox() {
 
 function getButton(content?: string, image?: string) {
     const button = document.createElement('button')
-    button.innerHTML = image ? `<img src=${image}>` : content
+    if (image) {
+        var img = new Image()
+            img.src = `../../src/icons/${image}`
+            img.style.width = '20px'
+            button.appendChild(img)
+    } else {
+        button.innerText = content
+    }
 
     return button
 }

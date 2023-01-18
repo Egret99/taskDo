@@ -24,23 +24,29 @@ function getNavBar(name: string, numOfTasks: number) {
     const tasksPending = document.createElement('div')
     tasksPending.innerText = `${numOfTasks} tasks pending`
     const greetingContainer = getDivContainer([greeting, tasksPending])
+    greetingContainer.id = 'mainGreeting'
 
     const title = getTitle('TaskDo')
+    title.id = 'mainTitle'
     const logoutButton = getButton('Logout')
     logoutButton.onclick = () => logout(name)
+    logoutButton.id = 'logoutButton'
 
     const container = getDivContainer([greetingContainer, title, logoutButton])
-    container.classList.add('nav')
+    container.id = 'nav'
 
     return container
 }
 
 function getContent(tasks: Task[]) {
-    const addNewTaskButton = getButton('Add New Task')
+    const addNewTaskButton = getButton('+ Add New Task')
     addNewTaskButton.onclick = createNewTask
+    addNewTaskButton.id = 'taskContentAddNewButton'
     const taskElements = tasks.map(task => getTaskElement(task.content, task.done))
-    const container = getDivContainer([addNewTaskButton, ...taskElements])
-    container.id = 'taskList'
+    const tasksDiv = getDivContainer([...taskElements])
+    tasksDiv.id = 'taskList'
+    const container = getDivContainer([addNewTaskButton, tasksDiv])
+    container.id = 'taskContent'
 
     return container
 }
@@ -66,6 +72,8 @@ function extractTasks(name: string) {
 function createNewTask() {
     const newTask = getTaskElement('', false)
     document.querySelector('#taskList').append(newTask)
+    const input = newTask.childNodes[2] as HTMLInputElement
+    input.focus()
 }
 
 function saveTask(name: string) {
