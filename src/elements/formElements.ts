@@ -19,7 +19,7 @@ function getButton(content?: string, image?: string) {
     const button = document.createElement('button')
     if (image) {
         var img = new Image()
-            img.src = `../../src/icons/${image}`
+            img.src = `../src/icons/${image}`
             img.style.width = '20px'
             button.appendChild(img)
     } else {
