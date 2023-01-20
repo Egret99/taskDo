@@ -1,3 +1,4 @@
+import { resolveProjectReferencePath } from "typescript";
 import { getDivContainer } from "../elements/container";
 import { getButton } from "../elements/formElements";
 import { getTaskElement } from "../elements/task";
@@ -9,9 +10,9 @@ type Task = {
     done: boolean
 }
 
-function main(name: string) {
+async function main(name: string) {
     document.body.innerHTML = ''
-    const tasks = extractTasks(name)
+    const tasks: Task[] = await extractTasks(name)
     const navBar = getNavBar(name, tasks.length)
     const content = getContent(tasks)
     
@@ -52,21 +53,21 @@ function getContent(tasks: Task[]) {
 }
 
 function extractTasks(name: string) {
-    const tasksText: string = localStorage.getItem(name)
-    const tasks: Task[] = []
+    return new Promise<Task[]>((resolve, reject) => {
+        const req = new XMLHttpRequest()
+        req.open("GET", `http://localhost:3000?name=${name}`)
 
-    if (tasksText) {
-        const taskTextList = tasksText.split(';')
-        for (let taskText of taskTextList) {
-            let [taskContent, taskDone] = taskText.split(',')
-            tasks.push({
-                content: taskContent,
-                done: Number(taskDone) === 1
-            })
+        req.onload = () => {
+            if (req.status != 200) {
+                reject(req.statusText)
+            } else {
+                const tasks = JSON.parse(req.response)
+                resolve(tasks)
+            }
         }
-    }
 
-    return tasks
+        req.send()
+    })
 }
 
 function createNewTask() {
@@ -90,8 +91,10 @@ function saveTask(name: string) {
         }
     })
 
-    const tasksText = tasks.map(task => `${task.content},${task.done ? 1:0}`).join(';')
-    localStorage.setItem(name, tasksText)
+    const req = new XMLHttpRequest()
+    req.open("POST", `http://localhost:3000/${name}`)
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(JSON.stringify(tasks))
 }
 
 function logout(name: string) {

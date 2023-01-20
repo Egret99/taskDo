@@ -33,7 +33,7 @@
     font-size: 22px;
 }
 
-#taskContentAddNewButton {
+#taskContent #taskContentAddNewButton {
     background-color: transparent;
     color: #B47AEA;
     border: none;
